@@ -12,38 +12,26 @@ export default function Home() {
               rounded={true}
           >
               <Navbar.Brand>
-                  <Image
-                      src="/images/logo-sesi.png"
-                      className="mr-3 h-6 sm:h-9"
-                      alt="Sesi Logo"
-                      height={100}
-                      width={100}
-                  />
+                  <Image src="/images/logo-sesi.png" className="w-[60px] h-[30px] md:h-[40px] md:w-[110px]" alt="Sesi Logo" height={100} width={100}/>
               </Navbar.Brand>
               <Navbar.Toggle />
-              <Navbar.Collapse className={"flex justify-center"}>
-                  <Navbar.Link href="/" active={true} className={"flex justify-center"}>Home</Navbar.Link>
-                  <Dropdown label="Matérias" inline={true}>
+              <Navbar.Collapse className={"pr-10"} >
+                  <Navbar.Link href="/" active={true}>Home</Navbar.Link>
+                  <Dropdown label="Matérias" className={"transition"} inline={true}>
                       <Dropdown.Header>
-    <span className="block text-sm">
-      Bonnie Green
-    </span>
-                          <span className="block text-sm font-medium truncate">
-      bonnie@flowbite.com
-    </span>
+                        <span className="block text-sm">Minhas Matérias</span>
                       </Dropdown.Header>
                       <Dropdown.Item>
-                          Dashboard
+                          Linguagens
                       </Dropdown.Item>
                       <Dropdown.Item>
-                          Settings
+                          Matemática
                       </Dropdown.Item>
                       <Dropdown.Item>
-                          Earnings
+                          Ciência da Natureza
                       </Dropdown.Item>
-                      <Dropdown.Divider />
                       <Dropdown.Item>
-                          Sign out
+                          Ciências Humanas
                       </Dropdown.Item>
                   </Dropdown>
               </Navbar.Collapse>
