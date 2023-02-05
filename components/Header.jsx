@@ -8,13 +8,14 @@ export default class NavBarMenu extends Component{
     render() {
         return (
             <>
+                <div>
                 <Navbar
                     fluid={true}
                     rounded={true}
                 >
                     <Navbar.Brand>
                         <Image src="/images/logo-sesi.png" className={"w-20"} alt="Sesi Logo" width={445} height={150}/>
-                        <p className={"flex justify-center text-sm pl-2 md:font-semibold md:text-lg lg:text-xl"}>Ricardo Marinho</p>
+                        <p className={"flex justify-center text-sm pl-2 font-semibold md:text-lg lg:text-xl"}>Ricardo Marinho</p>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className={"pr-10"} >
@@ -38,6 +39,8 @@ export default class NavBarMenu extends Component{
                         </Dropdown>
                     </Navbar.Collapse>
                 </Navbar>
+                </div>
+
             </>
         )
     }
