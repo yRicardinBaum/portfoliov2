@@ -1,6 +1,7 @@
 import NavBarMenu from "../../components/Header";
 import { useState } from "react";
 import AlertManeiro from "../../components/Alert.jsx";
+import Stepper from "../../components/Stepper.jsx";
 import Image from "next/image";
 
 export default function Home() {
@@ -43,11 +44,14 @@ export default function Home() {
           <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
 
 
-            <div>
-               <h1 className={"text-center font-bold text-[30px] text-slate-800"}>Planos</h1>
-                <hr/>
+               <h1 className={"text-center font-bold text-[30px] text-slate-800 mb-10"}>Planos</h1>
+                    <Stepper/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
 
-            </div>
 
 
       </main>
