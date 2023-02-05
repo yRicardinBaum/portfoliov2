@@ -10,7 +10,7 @@ export default function Home() {
       <main>
         <AlertManeiro/>
 
-        <header className={"p-5"}>
+        <header className={"md:p-5"}>
             <NavBarMenu/>
         </header>
           <div className={"w-full mx-auto text-center pt-[50px] md:pt-[100px]"}>

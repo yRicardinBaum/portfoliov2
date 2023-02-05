@@ -13,8 +13,8 @@ export default class NavBarMenu extends Component{
                     rounded={true}
                 >
                     <Navbar.Brand>
-                        <Image src="/images/logo-sesi.png" className="w-[60px] h-[30px] md:h-[40px] md:w-[110px]" alt="Sesi Logo" height={100} width={100}/>
-                        <h1 className={"flex justify-center pl-2 font-semibold text-lg"}>Ricardo Marinho do Prado</h1>
+                        <Image src="/images/logo-sesi.png" className={"w-20"} alt="Sesi Logo" width={445} height={150}/>
+                        <p className={"flex justify-center text-sm pl-2 md:font-semibold md:text-lg lg:text-xl"}>Ricardo Marinho</p>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className={"pr-10"} >
