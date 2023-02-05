@@ -17,13 +17,18 @@
     "eslint-config-next": "13.1.6",
     "flowbite": "^1.6.3",
     "flowbite-react": "^0.3.8",
+    "loader-utils": "^3.2.1",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "sass": "^1.58.0",
     "typescript": "4.9.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",
+    "javascript-obfuscator": "^4.0.0",
+    "mangle-css-class-webpack-plugin": "^5.0.9",
+    "nextjs-obfuscator": "^1.2.0",
     "npx": "^10.2.2",
     "postcss": "^8.4.21",
     "svelte-preprocess": "^5.0.1",

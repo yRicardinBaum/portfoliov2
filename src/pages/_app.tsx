@@ -1,4 +1,4 @@
-import '@/styles/globals.css'
+import '@/styles/globals.scss'
 import type { AppProps } from 'next/app'
 import Head from 'next/head';
 import {useEffect, useState} from "react";
@@ -22,7 +22,8 @@ export default function App({ Component, pageProps }: AppProps) {
                 <title>Ricardo Marinho - Portfólio</title>
                 <link rel="shortcut icon" href="/images/sesi_icon.ico"/>
             </Head>
-          <div className={"antialiased scroll-smooth hover:scroll-auto"}> <Component {...pageProps} /></div>
+
+          <Component {...pageProps} />
         </>
     );
   }

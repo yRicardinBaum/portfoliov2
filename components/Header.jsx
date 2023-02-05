@@ -14,6 +14,7 @@ export default class NavBarMenu extends Component{
                 >
                     <Navbar.Brand>
                         <Image src="/images/logo-sesi.png" className="w-[60px] h-[30px] md:h-[40px] md:w-[110px]" alt="Sesi Logo" height={100} width={100}/>
+                        <h1 className={"flex justify-center pl-2 font-semibold text-lg"}>Ricardo Marinho do Prado</h1>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className={"pr-10"} >
