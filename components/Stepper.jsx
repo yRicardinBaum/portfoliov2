@@ -6,7 +6,7 @@ export default class Stepper extends Component{
     render() {
         return (
             <>
-                <ol className="flex justify-center items-center w-full p-3 space-x-2 text-sm font-medium text-center text-gray-500 bg-white sm:text-base sm:p-4 sm:space-x-4">
+                <ol className="flex justify-center items-center w-full p-3 space-x-2 text-sm lg:text-xl text-center text-gray-500">
                     <li className="flex items-center text-yellow-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1"
                              stroke="currentColor" className="w-6 h-6 sm:w-3 sm:h-3 mr-1.5">
