@@ -18,20 +18,22 @@ export default function Home() {
             <p className="text-center mb-6 text-lg font-normal text-gray-600 lg:text-xl sm:px-16 xl:px-48 ">Este é o meu portifólio privado, aqui eu vou enviar minhas atividades, trabalhos e futuros projetos.</p>
 
               <div className={"pt-[100px]"}>
-                  <div className={"mx-auto animate-bounce bg-white border border-[#e5e7eb] p-2 w-10 h-10 ring-1 ring-slate-200/20 shadow-lg rounded-full flex items-center justify-center"}>
-                      <a href={"#sobre"} >
+                  <div onClick={function onClick() {
+                      // @ts-ignore
+                      document.getElementById("sobre").scrollIntoView();
+                  }} className={"mx-auto animate-bounce hover:cursor-pointer bg-white border border-[#e5e7eb] p-2 max-w-10 max-h-10 w-10 h-10 ring-1 ring-slate-200/20 shadow-lg rounded-full flex items-center justify-center"}>
                       <svg className="w-6 h-6 text-blue-500 mx-auto" fill="none" strokeLinecap="round"
                            strokeLinejoin="round" strokeWidth="2" viewBox="0 0 24 24" stroke="currentColor">
                           <path d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                       </svg>
-                      </a>
+
                   </div>
                   </div>
           </div>
-          <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
+          <hr id={"sobre"} className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
 
 
-          <div id={"sobre"} className={"mx-auto md:mx-0 md:flex md:justify-items-start md:justify-center md:space-x-20"}>
+          <div className={"mx-auto md:mx-0 md:flex md:justify-items-start md:justify-center md:space-x-20"}>
               <Image alt={"cat gif"} src={"/images/cat-computer.gif"} className={"mx-auto md:mx-0 md:h-[450px] md:w-[450px] md:order-1"} width={196} height={220}/>
               <div className={"mx-auto text-center mt-3 md:text-left md:order-2"}>
                   <h1 className={"text-center font-bold text-[30px] text-slate-800"}>Sobre mim</h1>
@@ -90,9 +92,7 @@ export default function Home() {
               <br/>
               <figure className="max-w-screen-md mx-auto text-center">
                   <blockquote>
-                      <p className="text-2xl italic font-medium text-gray-900 dark:text-white">`Flowbite is just
-                          awesome. It contains tons of predesigned components and pages starting from login screen to
-                          complex dashboard. Perfect choice for your next SaaS application.`</p>
+                      <p className="text-2xl italic font-medium text-gray-900 dark:text-white">"Tente uma, duas, três vezes e se possível tente a quarta, a quinta e quantas vezes for necessário. Só não desista nas primeiras tentativas, a persistência é amiga da conquista. Se você quer chegar aonde a maioria não chega, faça o que a maioria não faz."</p>
                   </blockquote>
                   <figcaption className="flex items-center justify-center mt-6 space-x-3">
                       <Image className="w-6 h-6 rounded-full"
