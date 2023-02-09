@@ -4,7 +4,6 @@ import Stepper from "../../components/Stepper.jsx";
 import Image from "next/image";
 
 export default function Home() {
-
     return (
     <>
           <main>
@@ -35,10 +34,15 @@ export default function Home() {
 
           <div className={"mx-auto md:mx-0 md:flex md:justify-items-start md:justify-center md:space-x-20"}>
               <Image alt={"cat gif"} src={"/images/cat-computer.gif"} className={"mx-auto md:mx-0 md:h-[450px] md:w-[450px] md:order-1"} width={196} height={220}/>
-              <div className={"mx-auto text-center mt-3 md:text-left md:order-2"}>
+              <div className={"mx-auto text-center md:text-left md:order-2"}>
                   <h1 className={"text-center font-bold text-[30px] text-slate-800"}>Sobre mim</h1>
                   <br/>
-                  <p className={"mx-auto text-center md:text-left max-w-[300px] md:max-w-[400px]"}>Me chamo Ricardo, atualmente faço o 1º ano do novo ensino médio, cursando desenvolvimento de sistemas, amo a matemática e como é perfeita de todos os jeitos, no meu tempo livre gosto de jogar e programar, atualmente quero ser um programador de sucesso trabalhando em grandes empresas, também almejo aprender segurança da informação para poder medir a segurança dos meus projetos. Eu já programo ha um tempo, comecei com 10 anos criando bots para Discord usando Node.js, após isso, não satisfeito, aprendi Java pela qual até hoje é linguagem que eu sou mais familiarizado, atualmente estou aprendendo a criação de sites usando Next.Js e React (HTML, CSS e JS também). Caso queira ver algum de meus códigos, clique na imagem a baixo e será direcionado ao meu repositório. </p>
+                  <p className={"mx-auto text-center md:text-left md:max-w-[400px]"}>Me chamo Ricardo, atualmente faço o 1º ano do novo ensino médio, cursando desenvolvimento de sistemas, amo a matemática e como é perfeita de todos os jeitos, no meu tempo livre gosto de jogar e programar, atualmente quero ser um programador de sucesso trabalhando em grandes empresas, também almejo aprender segurança da informação para poder medir a segurança dos meus projetos. Eu já programo ha um tempo, comecei com 10 anos criando bots para Discord usando Node.js, após isso, não satisfeito, aprendi Java pela qual até hoje é linguagem que eu sou mais familiarizado, atualmente estou aprendendo a criação de sites usando Next.Js e React (HTML, CSS e JS também). Caso queira ver algum de meus códigos, clique na imagem a baixo e será direcionado ao meu repositório. </p>
+                  <div className={"mx-auto w-fit"}>
+                      <div onClick={() => {
+                          window.open("https://github.com/yRicardinBaum", "_blank")
+                      }} className={"hover:cursor-pointer"} ><Image width={36} height={36}  className={"mt-5 animate-bounce mx-auto"} alt={"github"} src={"/images/github.png"}></Image></div>
+                  </div>
               </div>
           </div>
             <br/>

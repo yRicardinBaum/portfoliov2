@@ -9,11 +9,8 @@ export default class NavBarMenu extends Component{
         return (
             <>
                 <div>
-                <Navbar
-                    fluid={true}
-                    rounded={true}
-                >
-                    <Navbar.Brand>
+                <Navbar fluid={false} rounded={false}>
+                    <Navbar.Brand href={"/"}>
                         <Image src="/images/logo-sesi.png" className={"w-20"} alt="Sesi Logo" width={445} height={150}/>
                         <p className={"flex justify-center text-sm pl-2 font-semibold md:text-lg lg:text-xl"}>Ricardo Marinho</p>
                     </Navbar.Brand>

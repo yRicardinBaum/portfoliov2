@@ -2,6 +2,7 @@ import '@/styles/globals.scss'
 import type { AppProps } from 'next/app'
 import Head from 'next/head';
 import {useEffect, useState} from "react";
+import startClient, {isStarted} from "../../mongo/MongoDB";
 
 export default function App({ Component, pageProps }: AppProps) {
   const [showChild, setShowChild] = useState(false);
