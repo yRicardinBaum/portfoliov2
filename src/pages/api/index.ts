@@ -1,11 +1,12 @@
-import {NextApiHandler, NextApiRequest, NextApiResponse} from "next";
+import {NextApiHandler, NextApiRequest} from "next";
 import formidable from "formidable";
 import path from "path";
 import fs from "fs/promises";
-import {createMateria, getAllActivitiesByMateria, getAtividade} from "../../../mongo/MongoDB";
+import {createMateria} from "../../../mongo/MongoDB";
 import {convertFiles} from "../../../lib/convertFiles";
+import {Atividade, getAtividades} from "../../../mongo/Atividade";
+import { existsSync } from 'fs';
 
-const { existsSync } = require('fs')
 export const config = {
     api: {
         bodyParser: false,
@@ -37,43 +38,106 @@ const readFile = (req: NextApiRequest, id: any, saveLocally?: boolean): Promise<
 
 const handler: NextApiHandler = async (req, res) => {
     if(req.method == "POST") {
-        try {
-            const {name} = req.query;
-            const {description} = req.query;
-            const {materia} = req.query;
-            let id = await createMateria(name, description, materia);
-            if (!existsSync(path.join(process.cwd() + "/activities/" + id))) {
-                if (!existsSync(path.join(process.cwd() + "/activities/"))) {
-                    await fs.mkdir(path.join(process.cwd() + "/activities/"));
-                }
-                await fs.mkdir(path.join(process.cwd() + "/activities/" + id));
-            }
-            await readFile(req, id, true);
-            let files = await fs.readdir(path.join(process.cwd() + "/activities/" + id));
-            for (let i = 0; i < files.length; i++) {
-                if (files[i].endsWith(".pptx")) {
-                    await convertFiles(path.join(process.cwd() + "/activities/" + id + "/"), files[i]);
-                }
-            }
+            const name = req.query.name;
+            const description = JSON.stringify(req.query.description);
+            const materia = req.query.materia;
+            const semestre = req.query.semestre;
+            const data = req.query.data;
+                let atividade = await new (await Atividade)({
+                    nome: name,
+                    descricao: description.replaceAll('"', '').split('?n'),
+                    materia: materia,
+                    unidade: semestre,
+                    data: data
+                })
+                let id = atividade._id;
+                try {
+                    if (!existsSync(path.join(process.cwd() + "/activities/" + id))) {
+                        if (!existsSync(path.join(process.cwd() + "/activities/"))) {
+                            await fs.mkdir(path.join(process.cwd() + "/activities/"));
+                        }
+                        await fs.mkdir(path.join(process.cwd() + "/activities/" + id));
+                    }
+                    await readFile(req, id, true);
+                    let files = await fs.readdir(path.join(process.cwd() + "/activities/" + id));
+                    for (let i = 0; i < files.length; i++) {
+                        if (files[i].endsWith(".pptx")) {
+                            console.log("Convertendo...")
+                            await convertFiles(path.join(process.cwd() + "/activities/" + id + "/"), files[i]);
+                        }
+                    }
 
-
-            res.status(200).json({done: "ok"});
-        } catch (e) {
-            res.status(500).json({error: e});
-        }
+                    atividade.save();
+                    res.status(200).json({done: "ok"});
+                } catch (e) {
+                    res.status(500).json({error: e});
+                }
     } else {
-        const {method} = req.query;
-        if(method === "getAllActivities") {
-            const {materia} = req.query;
-            if(materia === "matematica"){
-                let result = await getAllActivitiesByMateria("matematica")
-                if((await result.count()) === 0) {
-                    res.status(200).json({ atividades: null });
-                } else {
-                    res.status(200).json({ atividades: await result.toArray() });
+
+        const metodo = req.query.method;
+        if(metodo === undefined) {
+            res.status(500).json( { error: "Você deve especificar o method!"})
+        } else {
+            switch (metodo) {
+                case "getAllActivities": {
+                    const {materia} = req.query;
+                    if(materia === undefined) {
+                        res.status(500).json( { error: "Você deve especificar a materia!"})
+                    } else {
+                        switch (materia) {
+                            case "matematica": {
+                                let atividades = await getAtividades("matematica");
+                                res.status(200).json({ atividades });
+                                break;
+                            }
+                            case "linguagens":{
+                                let atividades = await getAtividades("linguagens")
+                                res.status(200).json({ atividades });
+
+                                break;
+                            }
+                            case "natureza": {
+                                let atividades = await getAtividades("natureza")
+                                res.status(200).json({ atividades });
+
+                                break;
+                            }
+                            case "humanas": {
+                                let atividades = await getAtividades("humanas")
+                                res.status(200).json({ atividades });
+
+                                break;
+                            }
+                            default: {
+                                res.status(500).json({error: "Materia não encontrada!"});
+                                break;
+                            }
+                        }
+                    }
+
+                    break;
+                }
+                default: {
+
+                    res.status(500).json( { error: "Method não encontrado!"})
+                    break;
                 }
             }
         }
+
+
+
+        // let test = new Atividade({
+        //     nome: "Atividade",
+        //     descricao: "Teste de atividade",
+        //     materia: "matematica",
+        // })
+        // await test.save();
+        // console.log("")
+        // console.log("Criado com sucesso!")
+        // res.status(500)
+        // res.destroy();
+        // res.end();
     }
 };
 
