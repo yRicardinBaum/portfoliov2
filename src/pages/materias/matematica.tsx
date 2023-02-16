@@ -137,7 +137,7 @@ const Matematica: NextPage<{ atividade: Array<IAtividade>, semestre: string }> =
 export async function getServerSideProps() {
     // console.log("TENTANDO...")
     // let atividade: Array<IAtividade> = await getAtividades("matematica");
-    let api = await fetch("http://localhost:3000/api/test?method=getAllActivities&materia=matematica")
+    let api = await fetch("http://localhost:3000/api/activitys?method=getAllActivities&materia=matematica")
 
     let atividade: Array<IAtividade> = await api.json();
     return {
