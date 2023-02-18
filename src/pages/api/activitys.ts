@@ -20,20 +20,20 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse, 
                         }
                         case "linguagens":{
                             let atividades = await getAtividades("linguagens")
-                            res.status(200).json({ atividades });
+                            console.log(atividades)
+                            res.status(200).json(atividades);
 
                             break;
                         }
                         case "natureza": {
                             let atividades = await getAtividades("natureza")
-                            res.status(200).json({ atividades });
+                            res.status(200).json(atividades );
 
                             break;
                         }
                         case "humanas": {
                             let atividades = await getAtividades("humanas")
-                            res.status(200).json({ atividades });
-
+                            res.status(200).json(atividades );
                             break;
                         }
                         default: {

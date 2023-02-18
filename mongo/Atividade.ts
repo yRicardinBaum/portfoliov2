@@ -1,5 +1,15 @@
 import mongoose, {Model} from "mongoose";
 
+import path from "path";
+import {promises} from "fs";
+
+
+export interface Archives {
+    id: string;
+    files: string[]
+}
+
+
 export interface IAtividade extends mongoose.Document {
     nome: string;
     descricao: string[];
@@ -12,7 +22,7 @@ const AtividadeSchema = new mongoose.Schema({
     descricao: {type: (Array<String>), required: true},
     materia: {type:String, required: true},
     unidade:  {type:String, required: true},
-    data:  {type:String, required: true}
+    data: {type:String, required: true}
 });
 
 async function getSchema() {
@@ -42,6 +52,28 @@ async function verifyIfStarted() {
             if(e.connection?.readyState === 1) console.log("MongoDD conectado!!")
         })
     }
+}
+
+
+export async function getAtividadeFiles(atividade: Array<IAtividade>) {
+    let array: Archives[] = []
+
+    if(atividade.length > 0) {
+        for (const e of atividade) {
+            try {
+                let files: string[] = await promises.readdir(path.join(process.cwd() + "/public/activities/" + e._id));
+                if (files.length > 0) {
+                    let activity: Archives = {id: e._id, files: files}
+                    array.push(activity);
+                }
+            } catch (e) {
+            }
+        }
+    }
+    return array;
+
+
+
 }
 
 

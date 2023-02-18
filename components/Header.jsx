@@ -16,7 +16,7 @@ export default class NavBarMenu extends Component{
                         <p className={"flex justify-center text-sm pl-2 font-semibold md:text-lg lg:text-xl"}>Ricardo Marinho</p>
                     </Navbar.Brand>
                     <Navbar.Toggle />
-                    <Navbar.Collapse className={"pr-10"} >
+                    <Navbar.Collapse>
                         <Navbar.Link href="/" className={"text-blue-600"}>Home</Navbar.Link>
                         <Dropdown label="Matérias" className={"transition"} inline={true}>
                             <Dropdown.Header>

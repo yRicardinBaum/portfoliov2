@@ -2,9 +2,8 @@ import {NextApiHandler, NextApiRequest} from "next";
 import formidable from "formidable";
 import path from "path";
 import fs from "fs/promises";
-import {createMateria} from "../../../mongo/MongoDB";
 import {convertFiles} from "../../../lib/convertFiles";
-import {Atividade, getAtividades} from "../../../mongo/Atividade";
+import {Atividade} from "../../../mongo/Atividade";
 import { existsSync } from 'fs';
 
 export const config = {
@@ -21,7 +20,7 @@ type Atividade = {
 const readFile = (req: NextApiRequest, id: any, saveLocally?: boolean): Promise<{ fields: formidable.Fields; files: formidable.Files }> => {
         const options: formidable.Options = {};
     if (saveLocally) {
-        options.uploadDir = path.join(process.cwd(), "/activities/" + id);
+        options.uploadDir = path.join(process.cwd(), "/public/activities/" + id);
         options.filename = (name, ext, path) => {
             return Date.now().toString() + "_" + path.originalFilename;
         };
@@ -52,26 +51,29 @@ const handler: NextApiHandler = async (req, res) => {
         })
         let id = atividade._id;
         try {
-            if (!existsSync(path.join(process.cwd() + "/activities/" + id))) {
-                if (!existsSync(path.join(process.cwd() + "/activities/"))) {
-                    await fs.mkdir(path.join(process.cwd() + "/activities/"));
+            if (!existsSync(path.join(process.cwd() + "/public/activities/" + id))) {
+                if (!existsSync(path.join(process.cwd() + "/public/activities/"))) {
+                    await fs.mkdir(path.join(process.cwd() + "/public/activities/"));
                 }
-                await fs.mkdir(path.join(process.cwd() + "/activities/" + id));
+                await fs.mkdir(path.join(process.cwd() + "/public/activities/" + id));
             }
             await readFile(req, id, true);
-            let files = await fs.readdir(path.join(process.cwd() + "/activities/" + id));
+            let files = await fs.readdir(path.join(process.cwd() + "/public/activities/" + id));
             for (let i = 0; i < files.length; i++) {
                 if (files[i].endsWith(".pptx")) {
                     console.log("Convertendo...")
-                    await convertFiles(path.join(process.cwd() + "/activities/" + id + "/"), files[i]);
+                    await convertFiles(path.join(process.cwd() + "/public/activities/" + id + "/"), files[i]);
                 }
             }
 
             atividade.save();
             res.status(200).json({done: "ok"});
         } catch (e) {
+            console.log(e);
             res.status(500).json({error: e});
         }
+    } else {
+        res.status(500).destroy();
     }
 };
 
